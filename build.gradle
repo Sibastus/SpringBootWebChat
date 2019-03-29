@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE'
+        classpath 'org.postgresql:postgresql:42.2.3'
+    }
+}
+
+
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+}
+
+group 'com.chernyshov'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Spring
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile "org.springframework.boot:spring-boot-starter-logging"
+    compile 'org.springframework.integration:spring-integration-core'
+    compile 'org.springframework.cloud:spring-cloud-stream'
+    compile 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.kafka:spring-kafka'
+    compile 'org.springframework.boot:spring-boot-starter-cache'
+    compile 'org.springframework:spring-websocket'
+    
+    //PostgreSql
+    compile 'org.postgresql:postgresql:42.2.3'
+    
+    //lombok
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
+    
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
