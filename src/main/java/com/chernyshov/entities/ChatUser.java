@@ -20,7 +20,7 @@ import java.util.List;
 public class ChatUser {
 
     @Id
-    @GeneratedValue(generator="incriment")
+    @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     @Basic
     private Long id;
