@@ -4,7 +4,6 @@ package com.chernyshov.services.dataServices;
 import com.chernyshov.entities.ChatUser;
 import com.chernyshov.repositories.ChatUserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +11,13 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class ChatUserDataServices {
+public class ChatUserDataService {
 
-    @Autowired
     private ChatUserRepository chatUserRepository;
 
-
+    public ChatUserDataService(ChatUserRepository chatUserRepository) {
+        this.chatUserRepository = chatUserRepository;
+    }
 
     @Transactional
     public ChatUser saveUser(ChatUser user) {
