@@ -2,6 +2,7 @@ package com.chernyshov.services.dataServices;
 
 
 import com.chernyshov.entities.ChatUser;
+import com.chernyshov.exceptions.UserAlreadyExist;
 import com.chernyshov.repositories.ChatUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,9 @@ public class ChatUserDataService {
     public ChatUser saveUser(ChatUser user) {
         ChatUser chatUser = chatUserRepository.findByLogin(user.getLogin());
         if (chatUser != null) {
-            log.warn(String.format("User with login %s already exist", chatUser.getLogin()));
-
+            String message = String.format("User with login %s already exist", chatUser.getLogin());
+            log.warn(message);
+            throw new UserAlreadyExist(message);
         } else {
             chatUserRepository.save(user);
             log.info(String.format("User %s has been saved", user.getLogin()));
