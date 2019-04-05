@@ -4,7 +4,6 @@ package com.chernyshov.services.dataServices;
 import com.chernyshov.entities.Ban;
 import com.chernyshov.entities.ChatUser;
 import com.chernyshov.exceptions.UserAlreadyBanedException;
-import com.chernyshov.exceptions.UserAlreadyExist;
 import com.chernyshov.exceptions.UserCanNotBeUnBanedException;
 import com.chernyshov.exceptions.UserNotFoundException;
 import com.chernyshov.repositories.BanRepository;
