@@ -23,7 +23,24 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+            url("https://plugins.gradle.org/m2/")
+        }
+        maven{
+            url("https://repo.spring.io/libs-milestone")
+        }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.M2'
+        mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:Fishtown.M3"
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.1.RELEASE'
+    }
 }
 
 dependencies {
@@ -33,10 +50,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile 'org.springframework.integration:spring-integration-core'
-    compile 'org.springframework.cloud:spring-cloud-stream'
-    compile 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.kafka:spring-kafka'
     compile 'org.springframework.boot:spring-boot-starter-cache'
     compile 'org.springframework:spring-websocket'
     
@@ -52,9 +66,19 @@ dependencies {
     //redis
     compile 'org.springframework.data:spring-data-redis'
     compile 'redis.clients:jedis:2.9.0'
-
-
     
+    //kafka
+    compile 'org.springframework.cloud:spring-cloud-stream'
+    compile 'org.springframework.kafka:spring-kafka'
+    compile 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+
+    //security
+    compile 'org.keycloak:keycloak-spring-security-adapter:4.8.1.Final'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    
+    //liquibase
+    compile 'org.liquibase:liquibase-core:3.6.3'
+
     
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
